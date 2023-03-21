@@ -50,11 +50,11 @@ class artisteController extends Controller
 
     public function edit(Artistes $artiste)
     {
+        dd($artiste);
         return view('admin.artistes.edit', ['artiste' => $artiste,'User'=>Users::where(('id'),auth()->id())->firstOrFail()]);
     }
     public function update(Request $request, Artistes $artiste)
     {
-
         $formFields = $request->validate([
             'firstName' => 'required',
             'lastName' => 'required',

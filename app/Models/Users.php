@@ -10,7 +10,8 @@ class Users extends Authenticatable
 {
     use HasFactory;
 
-    protected $fillable = ['name','email','password'];
+    protected $table = 'users';
+    protected $fillable = ['name','email','password','role'];
 
     public function comment(){
         return $this->hasMany(Comment::class,'client_id','id');

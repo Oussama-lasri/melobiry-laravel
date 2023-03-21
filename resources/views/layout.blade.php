@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="tailwind.css" rel="stylesheet" />
     @livewireStyles
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>musicOnline</title>
 </head>
@@ -127,6 +128,11 @@
                         <button type="submit"
                             class="text-white text-xs font-semibold leading-5 tracking-widest uppercase py-[9px] px-[17px] sm:px-[38px] rounded-full hover:scale-105">logout</button>
                     </form>
+                    @if (auth()->user()->role == '1')
+                    <a class="text-white text-xs font-semibold leading-5 tracking-widest uppercase py-[9px] px-[17px] sm:px-[38px] rounded-full hover:scale-105"
+                        href="{{ asset('/admin/dashboard') }}"><i class="fa-solid fa-gear "
+                            style="color: #ffffff;"></i>dashboard</a>
+                @endif
                 @else
                     <div>
                         <a href="/Users.register"><button
@@ -135,6 +141,7 @@
                                 class="bg-white text-[#2e2e2e] text-xs font-semibold leading-5 tracking-widest uppercase py-[9px] px-[17px] sm:px-[38px] rounded-full hover:scale-105">LogIn</button></a>
                     </div>
                 @endauth
+                
             </header>
             <main class="text-white relative">
                 <div class="h-[275px] bg-gradient-to-b from-[#1f1f1f] to-[#121212] absolute w-full"></div>

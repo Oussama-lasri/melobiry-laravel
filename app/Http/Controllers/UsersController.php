@@ -63,20 +63,31 @@ class UsersController extends Controller
         return redirect('/')->with('message', 'You have been logged out!');
     }
 
-    public function beAdmin(Users $user)
+    public function beAdmin($id)
     {
-        dd($user);
-        if ($user->role == '1') {
-            $user->update([
-                'role' => '0'
-            ]);
-            return back()->with('message', 'user be a admin');
-        }
+        $user = Users::findOrFail($id);
+        // dd(Users::all()->where('id',));
         if ($user->role == '0') {
             $user->update([
                 'role' => '1'
             ]);
-            return back()->with('message', 'not admin');
+            return back()->with('message', 'User has been made an admin');
+        } else {
+            return back()->with('message', 'User role cannot be changed');
         }
     }
+    public function removeAdmin($id)
+    {
+       
+        $user = Users::findOrFail($id);
+        if ($user->role == '1') {
+            $user->update([
+                'role' => '0'
+            ]);
+            return back()->with('message', 'role admin removed');
+        }else {
+            return back()->with('message', 'admin role cannot be changed');
+        }
+    }
+
 }

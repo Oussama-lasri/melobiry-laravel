@@ -76,9 +76,7 @@ class bandeController extends Controller
         foreach ($request->member_id as $key=>$member_id) {
             $data = ['name' => $request->member_name[$key]];
             MembreBande::where('id',$member_id)->update($data);
-            // $member->update($data);
         }
-
         return back()->with('message','success');
     }
     public function delete()

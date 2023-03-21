@@ -67,9 +67,10 @@ Route::group(['middleware' => 'authenticate', 'prefix' => 'admin'], function () 
     Route::get('/{pieceMusical}/archive', [PiecesMusicalsController::class, 'archive']);
     Route::get('/users', [dashboardController::class, 'users']);
 
-    Route::get('/Users/{Users}/beAdmin', [UsersController::class, 'beAdmin']);
+    // user admin 
+    Route::get('/users/{Users}/beAdmin', [UsersController::class, 'beAdmin']);
+    Route::get('/users/{Users}/removeAdmin', [UsersController::class, 'removeAdmin']);
 });
-
 // Auth::routes();
 Route::post('/piecesMusicals/{pieceMusical}/like', [PiecesMusicalsController::class, 'like']);
 Route::delete('/piecesMusicals/{pieceMusical}/unlike', [PiecesMusicalsController::class, 'unlike']);

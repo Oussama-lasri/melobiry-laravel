@@ -56,7 +56,8 @@ class PiecesMusicalsController extends Controller
         $artistes = Artistes::all();
         return view('admin.piecesMusicals.edit', [
             'pieceMusical' => $pieceMusical,
-            'artistes' => $artistes
+            'artistes' => $artistes,
+            'User'=>Users::where(('id'),auth()->id())->firstOrFail(),
         ]);
     }
 
@@ -83,7 +84,7 @@ class PiecesMusicalsController extends Controller
         }
         // dd($request);
         $pieceMusical->update($formFields);
-        return redirect('/piecesMusicals')->with('message', 'piece Musical updated');
+        return redirect('admin/piecesMusicals')->with('message', 'piece Musical updated');
     }
 
     public function like(pieceMusical $pieceMusical)

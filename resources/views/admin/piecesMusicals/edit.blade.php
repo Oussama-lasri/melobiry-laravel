@@ -4,7 +4,7 @@
         <h1 class="text-2xl font-semibold text-gray-900">Add a musical pieces</h1>
     </div>
     <div class="flex justify-center mt-9">
-        <form method="post" action="/pieceMusical/{{ $pieceMusical->id }}" enctype="multipart/form-data"
+        <form method="post" action="{{ asset('admin/pieceMusical/' . $pieceMusical->id) }}" enctype="multipart/form-data"
             class="w-full max-w-lg">
 
             @csrf

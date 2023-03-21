@@ -28,7 +28,7 @@
         </form>
 
 
-        <a href="{{asset('admin/piecesMusicals/create')}}"
+        <a href="{{ asset('admin/piecesMusicals/create') }}"
             class="absolute top-0 right-5 mt-6 bg-blue-500 w-24 text-center hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">ajouter</a>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -106,15 +106,16 @@
                             </div>
                         </td>
                         <td class="px-2 py-4">
-                            @if($piece->status == true)
+                            @if ($piece->status == true)
                                 not archived
                             @else
                                 archived
                             @endif
                         </td>
                         <td class="py-4 flex items-center content-center space-between">
-                            <a href="/pieceMusical/{{$piece->id}}/edit" class="font-medium text-blue-500 mr-4"><i
-                                    class="fa-solid fa-pen"></i></a> {{--  edit --}}
+                            <a href="{{ asset('admin/pieceMusical/' . $piece->id . '/edit') }}"
+                                class="font-medium text-blue-500 mr-4"><i class="fa-solid fa-pen"></i></a>
+                            {{--  edit --}}
                             <form method="post" action="/artiste/">
                                 @csrf
                                 @method('DELETE')
@@ -122,7 +123,8 @@
                                         class="fa-solid fa-trash"></i></button>
                             </form>
                             {{--  delete --}}
-                            <a href="{{asset('/admin/'.$piece->id.'/archive')}}" class="font-medium text-gray ml-4"><i class="fa-solid fa-box-archive"></i></a>
+                            <a href="{{ asset('/admin/' . $piece->id . '/archive') }}" class="font-medium text-gray ml-4"><i
+                                    class="fa-solid fa-box-archive"></i></a>
                         </td>
                     </tr>
                 @endforeach

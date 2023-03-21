@@ -48,6 +48,7 @@
                 </tr>
             </thead>
             <tbody>
+                
                 @foreach ($users as $user)
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -71,8 +72,10 @@
                             </div>
                         </td>
                         <td class="px-6 py-4">
-                            <a href="{{ asset('admin/Users/' . $user->id . '/beAdmin') }}"
-                                class="font-medium text-blue-500 mr-4"><i class="fa-solid fa-pen"></i></a>
+                            <a href="{{ asset('admin/users/' . $user->id . '/beAdmin') }}"
+                                class="font-medium text-blue-500 mr-4">admin</a>
+                            <a href="{{ asset('admin/users/' . $user->id . '/removeAdmin') }}"
+                                class="font-medium text-blue-500 mr-4">user</a>
                         </td>
                     </tr>
                 @endforeach

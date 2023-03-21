@@ -91,7 +91,7 @@
                 @endforeach
 
             </tbody>
-        </table>
+        </table>    
     </div>
     <script>
         // alert('test')
