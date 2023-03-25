@@ -51,7 +51,5 @@
                     <div class="p-3 w-15 flex-shrink-0 text-right">{{ $piece->duration }}min</div>
                 </div>
             @endforeach
-
-
         </div>
     @endsection

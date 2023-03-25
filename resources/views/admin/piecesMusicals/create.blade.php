@@ -4,7 +4,8 @@
         <h1 class="text-2xl font-semibold text-gray-900">Add an musical pieces</h1>
     </div>
     <div class="flex justify-center mt-9">
-        <form method="post" action="{{asset('admin/piecesMusicals/store')}}" enctype="multipart/form-data" class="w-full max-w-lg">
+        <form method="post" action="{{ asset('admin/piecesMusicals/store') }}" enctype="multipart/form-data"
+            class="w-full max-w-lg">
             @csrf
 
 
@@ -20,25 +21,61 @@
                     @error('titreMusic')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
-
+                </div>
+                <div class="w-full flex place-items-stretch md:w-1/2 px-3 my-6 md:mb-0">
+                    <div>
+                        <label>Type:</label>
+                        <label for="artist">
+                            <input type="radio" id="artist" name="type" value="artist">
+                            Artist
+                        </label>
+                        <label for="band">
+                            <input type="radio" id="band" name="type" value="band">
+                            Band
+                        </label>
+                    </div>
+                </div>
+                {{-- artist --}}
+                <div class="flex w-full flex place-items-stretch md:w-1/2 px-3 my-6 md:mb-0 hidden" id="artiste_div">
+                    <div class="w-full md:w-1/2 px-3 ">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            for="grid-last-name">
+                            artiste Name
+                        </label>
+                        <select
+                            class="relative block w-full appearance-none my-2 rounded-none rounded-t-md border px-3 py-2 text-[#5f6164] placeholder-[#c7cad0]  focus:z-10  focus:outline-none sm:text-sm "
+                            id="" name="artiste_id">
+                            <option selected disabled hidden>Select Artiste</option>
+                            @foreach ($artistes as $artiste)
+                                <option value="{{ $artiste->id }}">{{ $artiste->firstName }} {{ $artiste->lastName }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('artiste_id')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
 
-
-                <div class="w-full md:w-1/2 px-3">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-                        artiste Name
-                    </label>
-                    <select
-                        class="relative block w-full appearance-none my-2 rounded-none rounded-t-md border px-3 py-2 text-[#5f6164] placeholder-[#c7cad0]  focus:z-10  focus:outline-none sm:text-sm "
-                        id="" name="artiste_id">
-                        <option selected disabled hidden>Select Artiste</option>
-                        @foreach ($artistes as $artiste)
-                            <option value="{{ $artiste->id }}">{{ $artiste->firstName }} {{ $artiste->lastName }}</option>
-                        @endforeach
-                    </select>
-                    @error('artiste_id')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
+                {{-- band --}}
+                <div class="flex w-full flex place-items-stretch md:w-1/2 px-3 my-6 md:mb-0 hidden" id="band_div">
+                    <div class="w-full md:w-1/2 px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            for="grid-last-name">
+                            band Name
+                        </label>
+                        <select
+                            class="relative block w-full appearance-none my-2 rounded-none rounded-t-md border px-3 py-2 text-[#5f6164] placeholder-[#c7cad0]  focus:z-10  focus:outline-none sm:text-sm "
+                            id="" name="band_id">
+                            <option selected disabled hidden>Select Band</option>
+                            @foreach ($bandes as $bande)
+                                <option value="{{ $bande->id }}">{{ $bande->name }} </option>
+                            @endforeach
+                        </select>
+                        @error('artiste_id')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
             </div>
             <div class="flex flex-wrap -mx-3 mb-6">
@@ -287,4 +324,24 @@
                 class="mt-6 bg-blue-500 w-24 text-center hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" />
         </form>
     </div>
+    <script>
+        const artiste_div = document.getElementById('artiste_div');
+        const artisteRadio = document.getElementById('artist');
+        const band_div = document.getElementById('band_div');
+        const bandRadio = document.getElementById('band');
+
+        // Show/hide the band select based on the value of the band radio button
+        bandRadio.addEventListener('change', () => {
+            if (bandRadio.checked) {
+                artiste_div.style.display = 'none';
+                band_div.style.display = 'block';
+            }
+        });
+        artisteRadio.addEventListener('change', () => {
+            if (artisteRadio.checked) {
+                artiste_div.style.display = 'block';
+                band_div.style.display = 'none';
+            }
+        });
+    </script>
 @endsection

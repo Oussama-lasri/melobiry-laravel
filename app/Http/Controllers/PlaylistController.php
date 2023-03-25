@@ -36,6 +36,7 @@ class PlaylistController extends Controller
 
     public function MusicsPlaylist(Request $request)
     {
+        // dd($request);
         // dd(piecemusicalPlaylist::where('piece_musical_id',$request->piece_musical_id)->where('playlist_id',$request->playlist_id)->exists());
         if (Auth::check()) {
             if (!piecemusicalPlaylist::where('piece_musical_id', $request->piece_musical_id)->where('playlist_id', $request->playlist_id)->exists()) {

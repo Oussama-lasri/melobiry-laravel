@@ -132,7 +132,7 @@
                     <a class="text-white text-xs font-semibold leading-5 tracking-widest uppercase py-[9px] px-[17px] sm:px-[38px] rounded-full hover:scale-105"
                         href="{{ asset('/admin/dashboard') }}"><i class="fa-solid fa-gear "
                             style="color: #ffffff;"></i>dashboard</a>
-                @endif
+                    @endif
                 @else
                     <div>
                         <a href="/Users.register"><button

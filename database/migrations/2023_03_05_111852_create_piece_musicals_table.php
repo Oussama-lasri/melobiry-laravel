@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('piece_musicals', function (Blueprint $table) {
             $table->id();
             $table->string('titreMusic');
-            $table->unsignedBigInteger('artiste_id');
+            $table->unsignedBigInteger('artiste_id')->nullable();
             $table->string('image');
             $table->string('music');
             $table->string('writers');

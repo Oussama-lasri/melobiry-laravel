@@ -37,7 +37,7 @@
                         Titre Music
                     </th>
                     <th scope="col" class=" py-3">
-                        artiste
+                        artiste/band
                     </th>
                     <th scope="col" class=" py-3">
                         langue
@@ -77,7 +77,12 @@
                         </th>
 
                         <td class=" py-4">
-                            {{ $piece->artiste->firstName }}
+                            @if ($piece->artiste)
+                                {{ $piece->artiste->firstName }}
+                            @elseif ($piece->band)
+                                {{ $item->band->name }}
+                            @endif
+
                         </td>
                         <td class=" py-4">
                             <div class="flex items-center">
@@ -123,8 +128,8 @@
                                         class="fa-solid fa-trash"></i></button>
                             </form>
                             {{--  delete --}}
-                            <a href="{{ asset('/admin/' . $piece->id . '/archive') }}" class="font-medium text-gray ml-4"><i
-                                    class="fa-solid fa-box-archive"></i></a>
+                            <a href="{{ asset('/admin/' . $piece->id . '/archive') }}"
+                                class="font-medium text-gray ml-4"><i class="fa-solid fa-box-archive"></i></a>
                         </td>
                     </tr>
                 @endforeach

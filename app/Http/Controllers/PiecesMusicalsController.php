@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\like;
 use App\Models\Users;
 use App\Models\Artistes;
+use App\Models\Bande;
 use App\Models\pieceMusical;
 use Illuminate\Http\Request;
 use App\Models\likePieceMusical;
@@ -23,13 +24,20 @@ class PiecesMusicalsController extends Controller
     public function create()
     {
         $artistes = Artistes::all();
-        return view('admin.piecesMusicals.create', ['artistes'=>Artistes::all(),'User' => Users::where(('id'), auth()->id())->firstOrFail(),]);
+        return view('admin.piecesMusicals.create', [
+            'artistes' => Artistes::all(),
+            'User' => Users::where(('id'), auth()->id())->firstOrFail(),
+            'bandes' => Bande::all()
+        ]);
     }
     public function store(Request $request)
     {
+        // dd($request);
         $formFields = $request->validate([
             'titreMusic' => 'required',
-            'artiste_id' => 'required',
+            'type' => 'required|in:artist,band',
+            'artiste_id' => 'required_if:type,artist',
+            'band_id' => 'required_if:type,band',
             'image' => 'required',
             'music' => 'required',
             'words' => 'required',
@@ -45,6 +53,12 @@ class PiecesMusicalsController extends Controller
         if ($request->hasFile('music')) {
             $formFields['music'] = $request->file('music')->store('music', 'public');
         }
+        // dd($formFields);
+        if ($formFields['type'] == 'artist') {
+            $formFields['artiste_id'] = $request->artiste_id;
+        } else {
+            $formFields['band_id'] = $request->band_id;
+        }
 
         pieceMusical::create($formFields);
         return back()->with('message', 'Musical piece created successfully');
@@ -57,7 +71,7 @@ class PiecesMusicalsController extends Controller
         return view('admin.piecesMusicals.edit', [
             'pieceMusical' => $pieceMusical,
             'artistes' => $artistes,
-            'User'=>Users::where(('id'),auth()->id())->firstOrFail(),
+            'User' => Users::where(('id'), auth()->id())->firstOrFail(),
         ]);
     }
 
@@ -102,22 +116,23 @@ class PiecesMusicalsController extends Controller
         return back()->with('message', 'unliked');
     }
 
-    public function archive(pieceMusical $pieceMusical){
+    public function archive(pieceMusical $pieceMusical)
+    {
 
 
-        if($pieceMusical->status == '1'){
+        if ($pieceMusical->status == '1') {
             $pieceMusical->update([
-                'status' => '0' ,
+                'status' => '0',
             ]);
-            return back()->with('message','archived');
+            return back()->with('message', 'archived');
         };
 
 
-        if($pieceMusical->status == '0'){
+        if ($pieceMusical->status == '0') {
             $pieceMusical->update([
                 'status' => '1',
             ]);
-            return back()->with('message','not archived');
+            return back()->with('message', 'not archived');
         }
     }
 }
