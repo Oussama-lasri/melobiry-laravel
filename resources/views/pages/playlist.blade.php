@@ -45,7 +45,11 @@
                     <div class="p-3 w-8 flex-shrink-0">▶️</div>
                     <div class="p-3 w-8 flex-shrink-0">❤️</div>
                     <div class="p-3 w-full">{{ $piece->titreMusic }}</div>
-                    <div class="p-3 w-full">{{ $piece->artiste->firstName }} {{ $piece->artiste->lastName }}</div>
+                    @if ($piece->artiste)
+                    <h3 class="font-bold text-[#EEF2F7] text-xl pt-4 pl-8">{{ $piece->artiste->firstName }}
+                        {{ $piece->artiste->lastName }}</h3>
+                @elseif ($piece->band)
+                @endif
                     <div class="p-3 w-full"><audio controls src="{{ asset('storage/' . $piece->music) }}">
                         </audio></div>
                     <div class="p-3 w-15 flex-shrink-0 text-right">{{ $piece->duration }}min</div>

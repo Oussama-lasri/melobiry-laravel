@@ -72,7 +72,7 @@ class bandeController extends Controller
         }
         $bande->update($formFields);
         
-        // dd($request);
+        dd($request);
         foreach ($request->member_id as $key=>$member_id) {
             $data = ['name' => $request->member_name[$key]];
             MembreBande::where('id',$member_id)->update($data);

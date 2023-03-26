@@ -6,8 +6,14 @@
             <div class="absolute w-full h-[100px] bottom-0 bg-gradient-to-t from-[#181818] left-0"></div>
             <div class="backdrop-brightness-[60%] h-full w-full">
                 <h2 class="font-bold text-[#EEF2F7] text-3xl pt-6 pl-8">{{ $pieceMusical->titreMusic }}</h2>
+                @if ($pieceMusical->artiste)
                 <h3 class="font-bold text-[#EEF2F7] text-xl pt-4 pl-8">{{ $pieceMusical->artiste->firstName }}
                     {{ $pieceMusical->artiste->lastName }}</h3>
+            @elseif ($pieceMusical->band)
+            <h3 class="font-bold text-[#EEF2F7] text-xl pt-4 pl-8"> {{ $pieceMusical->band->name }}</h3>
+               
+            @endif
+               
                 <h4 class="font-bold text-[#EEF2F7] text-lg pt-2 pl-8">Duration :
                     <span>{{ $pieceMusical->duration }}</span>min
                 </h4>
@@ -104,9 +110,9 @@
                                     <footer class="flex justify-between items-center mb-2">
                                         <div class="flex items-center">
                                             <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                                                <img class="mr-2 w-6 h-6 rounded-full"
-                                                    src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-                                                    alt="Michael Gough">{{ $comment->User->name }}
+                                                {{-- <img class="mr-2 w-6 h-6 rounded-full" 
+                                                    {{-- src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                                    alt="Michael Gough"> --}}{{ $comment->User->name }}
                                             </p>
                                             <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate
                                                     datetime="{{ date('Y-m-d', strtotime($comment->created_at)) }}"

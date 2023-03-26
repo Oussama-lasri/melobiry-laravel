@@ -80,7 +80,7 @@
                             @if ($piece->artiste)
                                 {{ $piece->artiste->firstName }}
                             @elseif ($piece->band)
-                                {{ $item->band->name }}
+                                {{ $piece->band->name }}
                             @endif
 
                         </td>

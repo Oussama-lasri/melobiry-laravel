@@ -15,6 +15,6 @@ class Bande extends Model
         return $this->hasMany(MembreBande::class,'bande_id','id');
     }
     public function piecesMusicals(){
-        return $this->hasMany(pieceMusical::class,'bande_id','id');
+        return $this->hasMany(pieceMusical::class,'band_id','id');
     }
 }

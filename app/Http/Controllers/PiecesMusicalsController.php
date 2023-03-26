@@ -61,7 +61,7 @@ class PiecesMusicalsController extends Controller
         }
 
         pieceMusical::create($formFields);
-        return back()->with('message', 'Musical piece created successfully');
+        return redirect('/admin/piecesMusicals')->with('message', 'Musical piece created successfully');
     }
 
 

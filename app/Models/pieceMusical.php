@@ -19,7 +19,7 @@ class pieceMusical extends Model
         return $this->belongsTo(Artistes::class,'artiste_id','id');
     }
     public function band(){
-        return $this->belongsTo(Bande::class,'bande_id','id');
+        return $this->belongsTo(Bande::class,'band_id','id');
     }
     public function comments(){
         return $this->hasMany(Comment::class,'pieceMusical_id','id');

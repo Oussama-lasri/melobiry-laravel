@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('piece_musicals', function (Blueprint $table) {
-            $table->foreignId('band_id')->constrained('bandes')->nullable();
+            $table->unsignedBigInteger('band_id')->nullable();
+            $table->foreign('band_id')->references('id')->on('bandes')->onDelete('cascade');
+            // $table->foreignId('band_id')->constrained('bandes')->default(null);
         });
     }
 

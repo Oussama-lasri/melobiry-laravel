@@ -28,9 +28,17 @@
                             </svg>
                         </button>
                     </div>
+                    
                     <h2 class="mt-4 mb-1 font-semibold tracking-wide capitalize">{{ $piece->titreMusic }}</h2>
+                    @if ($piece->artiste)
                     <h6 class="mt-4 mb-1 font-semibold tracking-wide capitalize">Artiste : <span
-                            class="bold">{{ $piece->artiste->firstName }} {{ $piece->artiste->lastName }}</span> </h6>
+                        class="bold">{{ $piece->artiste->firstName }} {{ $piece->artiste->lastName }}</span> </h6>
+                    @elseif ($piece->band)
+                    
+                    <h6 class="mt-4 mb-1 font-semibold tracking-wide capitalize">Band : <span
+                        class="bold">{{ $piece->band->name }}</span> </h6>
+                    @endif
+                    
                     <h3 class="mt-4 mb-1 font-semibold tracking-wide capitalize">duration : <span
                             class="bold">{{ $piece->duration }}</span> min</h3>
                     <h4 class="mt-4 mb-1 font-semibold tracking-wide capitalize">release at : <span

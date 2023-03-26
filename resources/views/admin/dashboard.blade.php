@@ -1,7 +1,7 @@
 @extends('admin.dashboardLayout')
 @section('content')
     <!-- Statistics Cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
+    {{-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
         <div
             class="bg-indigo-800 dark:bg-gray-800 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 dark:border-gray-600 text-white font-medium group">
             <div
@@ -48,7 +48,7 @@
                 <p>Musics</p>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- ./Statistics Cards -->
     <div class="container mx-auto px-10">
@@ -58,8 +58,6 @@
             <a href="#" class="uppercase text-xs font-bold tracking-widest hover:underline text-black leading-6">See
                 all</a>
         </div>
-        
-        
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -145,7 +143,7 @@
                             Titre Music
                         </th>
                         <th scope="col" class=" py-3">
-                            artiste
+                            artiste/bande
                         </th>
                         <th scope="col" class=" py-3">
                             image
@@ -185,7 +183,11 @@
                             </th>
 
                             <td class=" py-4">
-                                {{ $piece->artiste->firstName }}
+                                @if ($piece->artiste)
+                                Artiste:{{ $piece->artiste->firstName }}
+                            @elseif ($piece->band)
+                                bande:{{ $piece->band->name }}
+                            @endif
                             </td>
                             <td class="px-2 py-4">
                                 <div class="flex items-center">
