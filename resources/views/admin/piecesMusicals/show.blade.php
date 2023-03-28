@@ -23,7 +23,6 @@
                 <input type="submit"
                     class="mt-6 bg-blue-500 w-24 text-center hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
                     value="Search" />
-
             </div>
         </form>
 
@@ -121,7 +120,7 @@
                             <a href="{{ asset('admin/pieceMusical/' . $piece->id . '/edit') }}"
                                 class="font-medium text-blue-500 mr-4"><i class="fa-solid fa-pen"></i></a>
                             {{--  edit --}}
-                            <form method="post" action="/artiste/">
+                            <form method="post" action="{{ asset('admin/pieceMusical/'.$piece->id)}}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="font-medium text-red-500"><i

@@ -46,7 +46,7 @@ class bandeController extends Controller
             ]);
         }
 
-        return back()->with('message', 'bandes created successfully');
+        return redirect('admin/bandes')->with('message', 'bandes created successfully');
     }
     public function edit(Bande $bande)
     {
@@ -72,14 +72,20 @@ class bandeController extends Controller
         }
         $bande->update($formFields);
         
-        dd($request);
+        // dd($request);
         foreach ($request->member_id as $key=>$member_id) {
             $data = ['name' => $request->member_name[$key]];
             MembreBande::where('id',$member_id)->update($data);
         }
         return back()->with('message','success');
     }
-    public function delete()
+    public function delete(Bande $bande)
     {
+        foreach( $bande->members as $member){
+            $member->delete();
+        }
+      
+        $bande->delete();
+        return redirect('/admin/bandes')->with('message','bande deleted');
     }
 }

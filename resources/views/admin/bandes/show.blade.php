@@ -80,7 +80,7 @@
                         <td class="px-6 py-4 flex">
                             <a href="{{ asset('admin/bande/'. $bande->id) }}/edit" class="font-medium text-blue-500 mr-4"><i
                                     class="fa-solid fa-pen"></i></a> {{--  edit --}}
-                            <form method="post" action="{{ asset('admin/bande/' . $bande->id) }}">
+                            <form method="post" action="{{ asset('admin/bande/delete/' . $bande->id) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="font-medium text-red-500"><i

@@ -75,6 +75,13 @@ class PiecesMusicalsController extends Controller
         ]);
     }
 
+    public function delete(pieceMusical $pieceMusical)
+    {
+    
+        $pieceMusical->delete();
+        return redirect('/admin/piecesMusicals')->with('message','Music deleted');
+    }
+
     public function update(pieceMusical $pieceMusical, Request $request)
     {
         $formFields = $request->validate([

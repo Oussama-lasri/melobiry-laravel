@@ -42,7 +42,9 @@ Route::group(['middleware' => 'authenticate', 'prefix' => 'admin'], function () 
     // update
     Route::put('/artiste/{artiste}', [artisteController::class, 'update']);
     // delete
-    Route::delete('/artiste/{artiste}', [artisteController::class, 'delete']);
+    Route::delete('/artiste/{artiste}/delete', [artisteController::class, 'delete']);
+
+
     Route::get('/artistes', [artisteController::class, 'indexArtiste']);
     // pieceMusical
     Route::get('/piecesMusicals', [PiecesMusicalsController::class, 'showPiecesMusicals']);
@@ -50,6 +52,7 @@ Route::group(['middleware' => 'authenticate', 'prefix' => 'admin'], function () 
     Route::post('/piecesMusicals/store', [PiecesMusicalsController::class, 'store']);
     Route::get('/pieceMusical/{pieceMusical}/edit', [PiecesMusicalsController::class, 'edit']);
     Route::put('/pieceMusical/{pieceMusical}/', [PiecesMusicalsController::class, 'update']);
+    Route::delete('/pieceMusical/{pieceMusical}/delete', [PiecesMusicalsController::class, 'delete']);
 
 
     // bande
@@ -58,7 +61,7 @@ Route::group(['middleware' => 'authenticate', 'prefix' => 'admin'], function () 
     Route::post('/bande/store', [bandeController::class, 'store']);
     Route::get('/bande/{bande}/edit', [bandeController::class, 'edit']);
     Route::put('/bande/{bande}', [bandeController::class, 'update']);
-    Route::delete('/bande/{bande}/delete', [bandeController::class, 'delete']);
+    Route::delete('/bande/delete/{bande}', [bandeController::class, 'delete']);
 
     // comments
     Route::get('/comments/show', [commentController::class, 'show']);

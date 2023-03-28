@@ -77,9 +77,10 @@
                             </div>
                         </td>
                         <td class="px-6 py-4">
-                            <a href="{{ asset('admin/artiste/'. $artiste->id) }}/edit" class="font-medium text-blue-500 mr-4"><i
-                                    class="fa-solid fa-pen"></i></a> {{--  edit --}}
-                            <form method="post" action="{{ asset('admin/artiste/' . $artiste->id) }}">
+                            <a href="{{ asset('admin/artiste/' . $artiste->id) }}/edit"
+                                class="font-medium text-blue-500 mr-4"><i class="fa-solid fa-pen"></i></a>
+                            {{--  edit --}}
+                            <form method="post" action="{{ asset('admin/artiste/' . $artiste->id) . '/delete' }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="font-medium text-red-500"><i
@@ -91,7 +92,7 @@
                 @endforeach
 
             </tbody>
-        </table>    
+        </table>
     </div>
     <script>
         // alert('test')
